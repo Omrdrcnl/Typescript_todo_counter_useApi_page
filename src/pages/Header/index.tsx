@@ -35,14 +35,14 @@ function Header() {
             >
               Counter
             </Link>
-            <Link className="me-3 py-2 text-dark text-decoration-none" to={"/"}>
-              Enterprise
+            <Link
+              className="me-3 py-2 text-dark text-decoration-none"
+              to={"/todo"}
+            >
+              Todo
             </Link>
             <Link className="me-3 py-2 text-dark text-decoration-none" to={"/"}>
-              Support
-            </Link>
-            <Link className="py-2 text-dark text-decoration-none" to={"/"}>
-              Pricing
+              Use Api
             </Link>
           </nav>
         </div>
