@@ -8,33 +8,7 @@ export type TodoList = {
 };
 function Todo() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [todoList, setTodoList] = useState<TodoList[]>([
-    {
-      id: 1,
-      title: "Todo",
-      isDone: true,
-    },
-    {
-      id: 2,
-      title: "Todo 2",
-      isDone: false,
-    },
-    {
-      id: 3,
-      title: "Todo 3",
-      isDone: false,
-    },
-    {
-      id: 4,
-      title: "Todo 4",
-      isDone: false,
-    },
-    {
-      id: 5,
-      title: "Todo 5",
-      isDone: false,
-    },
-  ]);
+  const [todoList, setTodoList] = useState<TodoList[]>([]);
 
   return (
     <>
@@ -42,6 +16,11 @@ function Todo() {
         show={showModal}
         onClose={() => {
           setShowModal(false);
+        }}
+        onSave={(save: TodoList) => {
+          todoList.push(save);
+          console.log(save);
+          setTodoList([...todoList]);
         }}
       />
 
@@ -87,7 +66,9 @@ function Todo() {
                     <button
                       type="button"
                       onClick={(e) => {
-                        console.log(item.id);
+                        const updatedTodos = todoList.slice(index, 1);
+                        setTodoList(updatedTodos);
+                        console.log(updatedTodos);
                       }}
                       className="btn btn-sm btn-danger"
                     >

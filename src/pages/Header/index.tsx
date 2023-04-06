@@ -41,7 +41,10 @@ function Header() {
             >
               Todo
             </Link>
-            <Link className="me-3 py-2 text-dark text-decoration-none" to={"/"}>
+            <Link
+              className="me-3 py-2 text-dark text-decoration-none"
+              to={"/useapi"}
+            >
               Use Api
             </Link>
           </nav>
