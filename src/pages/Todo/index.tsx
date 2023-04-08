@@ -66,9 +66,8 @@ function Todo() {
                     <button
                       type="button"
                       onClick={(e) => {
-                        const updatedTodos = todoList.slice(index, 1);
-                        setTodoList(updatedTodos);
-                        console.log(updatedTodos);
+                        todoList.splice(index, 1);
+                        setTodoList([...todoList]);
                       }}
                       className="btn btn-sm btn-danger"
                     >
