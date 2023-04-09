@@ -4,6 +4,7 @@ import Header from "./pages/Header";
 import Todo from "./pages/Todo";
 import ApiPage from "./pages/Apipage";
 import UserDetails from "./pages/Apipage/userdetails";
+import Adoptez from "./pages/Adoptez";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/todo" element={<Todo />} />
           <Route path="/useapi" element={<ApiPage />} />
           <Route path="/useapi/:userId" element={<UserDetails />} />
+          <Route path="/adoptez" element={<Adoptez />} />
         </Routes>
       </HashRouter>
     </div>

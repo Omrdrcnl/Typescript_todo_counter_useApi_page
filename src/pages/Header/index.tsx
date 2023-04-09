@@ -45,7 +45,13 @@ function Header() {
               className="me-3 py-2 text-dark text-decoration-none"
               to={"/useapi"}
             >
-              Use Api
+              Json Api
+            </Link>
+            <Link
+              className="me-3 py-2 text-dark text-decoration-none"
+              to={"/adoptez"}
+            >
+              Adoptez Api
             </Link>
           </nav>
         </div>
