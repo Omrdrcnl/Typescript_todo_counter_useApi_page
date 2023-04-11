@@ -1,30 +1,63 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import useApi from "../../hooks/useApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CategoryType, setCategory } from "../../redux/categorySlicer";
+import { AxiosResponse } from "axios";
+import CategoryBox from "./components/categorybox";
+import Loading from "../../components/loading";
 
-export type AdoptezResponseType = {
+export type AdoptezResponseType<DataType = any> = {
   data: DataType;
   status: "success" | "error";
+  draw?: number;
+  recordsTotal?: number;
+  recordsFiltered?: number;
+  errorMessage?: string;
+  exeptionType?: string;
 };
 
 export default function Adoptez() {
   const api = useApi("adoptez");
-  const CategoryState = useSelector((state: RootState) => {
-    console.log(state);
+  const dispatch = useDispatch();
+
+  const categoryState = useSelector((state: RootState) => {
+    // console.log(state);
     return state.category;
   });
-  const [categories, setCategories] = useState(null);
 
-  if (CategoryState.initialized === false) {
+  if (categoryState.initialized === false) {
     api
-      .get("public/categories/listMainCategories")
-      .then((response) => {
-        console.log(">>>  Adoptez epi res", response);
+      .get<AdoptezResponseType<CategoryType[]>>(
+        "public/categories/listMainCategories"
+      )
+      .then((response: AxiosResponse<AdoptezResponseType<CategoryType[]>>) => {
+        if (response.data.data) {
+          dispatch(setCategory(response.data.data));
+        }
+
+        // console.log(">>>  Adoptez epi res", response);
       })
-      .catch((error) => {});
-    return <div>Loading...</div>;
+      .catch((error) => {
+        console.log(">>> Error", error);
+      });
+    return (
+      <div className="row d-flex justify-content-center">
+        <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <Loading />
+        </div>
+      </div>
+    );
   }
 
-  return <>Adoptez sayfası</>;
+  return (
+    <div className="row">
+      <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        {categoryState.categories.map((item: CategoryType, index: number) => {
+          return <CategoryBox item={item} key={index} />;
+        })}
+      </div>
+      {/* <pre>{JSON.stringify(categoryState, null, 2)}</pre> */}
+    </div>
+  );
 }
