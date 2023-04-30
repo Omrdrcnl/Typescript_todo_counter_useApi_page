@@ -6,6 +6,7 @@ import ApiPage from "./pages/Apipage";
 import UserDetails from "./pages/Apipage/userdetails";
 import Adoptez from "./pages/Adoptez";
 import Home from "./pages/Home";
+import CategoryDetailsPage from "./pages/Adoptez/CategoryDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/useapi" element={<ApiPage />} />
           <Route path="/useapi/:userId" element={<UserDetails />} />
           <Route path="/adoptez" element={<Adoptez />} />
+          <Route path="/category-details" element={<CategoryDetailsPage />} />
         </Routes>
       </HashRouter>
     </div>

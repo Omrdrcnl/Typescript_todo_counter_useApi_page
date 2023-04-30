@@ -33,6 +33,8 @@ export default function Adoptez() {
       )
       .then((response: AxiosResponse<AdoptezResponseType<CategoryType[]>>) => {
         if (response.data.data) {
+          // response.data.data içeriğinin dolu geldiğinden emin olmak gerekli.
+          // çünkü gelen tür undifined olma ihtimali var.
           dispatch(setCategory(response.data.data));
         }
 
