@@ -32,27 +32,27 @@ export type CategoryDetailsPropsType = {
 function CategoryBox(props: CategoryBoxProps) {
   // console.log("CategoryProps", props);
   const api = useApi("adoptez");
-  const CategoryDetailsClick = (e: any) => {
-    e.preventDefault();
-    api
-      .get(`public/categories/getBySlug/${props.item.slug}`)
-      .then((Response) => {
-        console.log("CategoryDetailsClick", Response);
-        const categoryDetailData: CategoryDetailsPropsType[] = [];
-        categoryDetailData.push(Response.data.data);
-        //<CategoryDetailsPage {...Response.data.data} />;
-        console.log("CategoryDetailsClick daa", categoryDetailData);
+  // const CategoryDetailsClick = (e: any) => {
+  //   e.preventDefault();
+  //   api
+  //     .get(`public/categories/getBySlug/${props.item.slug}`)
+  //     .then((Response) => {
+  //       console.log("CategoryDetailsClick", Response);
+  //       const categoryDetailData: CategoryDetailsPropsType[] = [];
+  //       categoryDetailData.push(Response.data.data);
+  //       //<CategoryDetailsPage {...Response.data.data} />;
+  //       console.log("CategoryDetailsClick daa", categoryDetailData);
 
-        categoryDetailData.map(
-          (item: CategoryDetailsPropsType, index: number) => {
-            return <CategoryDetailsPage {...item} key={index} />;
-          }
-        );
-      })
-      .catch((err) => {
-        console.log("CategoryDetailsClick", err);
-      });
-  };
+  //       categoryDetailData.map(
+  //         (item: CategoryDetailsPropsType, index: number) => {
+  //           return <CategoryDetailsPage {...item} key={index} />;
+  //         }
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log("CategoryDetailsClick", err);
+  //     });
+  // };
 
   return (
     <div className="category">
@@ -69,8 +69,7 @@ function CategoryBox(props: CategoryBoxProps) {
             </small>
           </h1>
           <Link
-            to="/category-details"
-            onClick={CategoryDetailsClick}
+            to={"/category-details/" + props.item.slug}
             className="w-100 btn btn-lg btn-primary"
           >
             Details

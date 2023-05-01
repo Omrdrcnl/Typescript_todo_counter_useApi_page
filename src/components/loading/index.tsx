@@ -1,6 +1,6 @@
 function loading() {
   return (
-    <div className="spinner-grow d-flex justify-content-center" role="status">
+    <div className="spinner-grow">
       <span className="sr-only"></span>
     </div>
   );

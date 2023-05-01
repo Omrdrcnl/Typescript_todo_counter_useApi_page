@@ -21,7 +21,10 @@ function App() {
           <Route path="/useapi" element={<ApiPage />} />
           <Route path="/useapi/:userId" element={<UserDetails />} />
           <Route path="/adoptez" element={<Adoptez />} />
-          <Route path="/category-details" element={<CategoryDetailsPage />} />
+          <Route
+            path="/category-details/:category_id"
+            element={<CategoryDetailsPage />}
+          />
         </Routes>
       </HashRouter>
     </div>
